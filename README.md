@@ -1,203 +1,357 @@
-# Sport Wales Crowdfunder Calculator
+# Sport Wales Project Template (SWPT)
 
-A React-based calculator tool helping community sports organisations determine potential match funding from Sport Wales. Built with Vite, React, and Tailwind CSS.
+Welcome to the Sport Wales Project Template - a comprehensive foundation for building React applications that align with Sport Wales' design system and development standards. This template combines Vite, React, Tailwind CSS, and our custom component library to help you build consistent, high-quality applications.
 
-## Overview
-
-This calculator helps sports clubs and organisations in Wales:
-- Calculate potential match funding from Sport Wales
-- Determine funding percentages based on location (WIMD data)
-- Factor in support for priority groups
-- Compute total project values and required fundraising amounts
-
-## Key Features
-
-- Two calculation modes:
-  - Total project cost calculation
-  - Target fundraising amount calculation
-- WIMD (Welsh Index of Multiple Deprivation) integration
-- Priority group selection
-- Real-time calculations
-- Responsive design
-- Sport Wales brand compliant
-
-
-## Quick Start
+## Getting Started
 
 ### Prerequisites
-- Node.js installed on your machine
+Before you begin, ensure you have the following installed:
+- Node.js (version 18 or higher)
 - npm (comes with Node.js)
 - Git for version control
+- A code editor (we recommend VS Code)
 
-### Setup Steps
+### Setting Up Your Project Repository
 
-1. Create a new Vite project:
+When you clone the SWPT, you'll need to disconnect it from the template repository and connect it to your new project repository. This process ensures your project starts with a clean Git history while maintaining all the template files. Here's how to do it:
+
+1. First, navigate to your project directory in PowerShell or Command Prompt:
 ```bash
-npm create vite@latest crowdfunder_cal -- --template react
-cd crowdfunder_cal
+cd "C:\Users\YourUsername\Path\To\Your\Project\SWPT"
 ```
 
-2. Install dependencies:
+2. Remove the existing remote repository connections:
 ```bash
-npm install react-router-dom @headlessui/react lucide-react @fortawesome/fontawesome-free
-npm install -D tailwindcss postcss autoprefixer
+# Remove remote repository references
+Remove-Item -Path ".git/refs/remotes/origin" -Recurse -Force
+Remove-Item -Path ".git/logs/refs/remotes/origin" -Recurse -Force
+git remote remove origin
 ```
 
-3. Initialise Tailwind CSS:
+3. Add your new repository as the origin:
 ```bash
-npx tailwindcss init -p
+# Replace the URL with your project's repository URL
+git remote add origin https://github.com/Sport-Wales/Your-Project-Name.git
 ```
 
-## Project Structure
-```
-crowdfunder_cal/
-├── public/              # Static assets that need to be served as-is
-│   └── favicon.svg
-├── src/
-│   ├── components/     
-│   │   ├── layout/     # Layout components (Header, Footer, etc.)
-│   │   └── ui/         # Reusable UI components
-│   ├── pages/          # Page components
-│   ├── assets/         # Images, icons, etc.
-│   ├── data/          # JSON data files
-│   ├── styles/        # CSS files
-│   │   └── index.css  # Global styles
-│   ├── utils/         # Helper functions
-│   ├── App.jsx        # Main App component
-│   ├── main.jsx       # Entry point
-│
-├── index.html          # Entry HTML file
-├── package.json        # Project dependencies and scripts
-├── vite.config.js      # Vite configuration
-├── postcss.config.js   # PostCSS configuration
-├── tailwind.config.js  # Tailwind configuration
-└── README.md          # Project documentation
-```
-
-
-### Key Files
-```
-src/
-├── components/
-│   └── calculator/
-│       └── CrowdfunderCalculator.jsx    # Main calculator component
-├── utils/
-│   ├── wimd.js                         # WIMD data utilities
-│   └── convertWIMDData.js              # WIMD data conversion
-├── data/
-│   ├── PostcodesCSV.csv                # Raw WIMD data
-│   └── wimd_data.json                  # Processed WIMD data
-└── styles/
-    └── index.css                       # Global styles including SWBG
-```
-
-
-## Core Components
-
-### Set up WIMD data:
-   - Place PostcodesCSV.csv in src/data/
-   - Run conversion script:
-   - This will convert the PostcodesCSV.csv file into a JSON file in: 
-   `src/data/wimd_data.json`
-
+4. Verify the new remote connection:
 ```bash
-npm run convert-wimd
+git remote -v
 ```
 
-### 1. CrowdfunderCalculator
-Main calculator component (`src/components/calculator/CrowdfunderCalculator.jsx`)
-- Handles all calculation logic
-- Manages form state
-- Processes WIMD data
-- Validates inputs
-- Displays results
+This should show your new repository URL as both fetch and push destinations.
 
-### 2. WIMD Integration
-WIMD utilities (`src/utils/wimd.js`)
-- Postcode validation
-- WIMD rank lookup
-- Area deprivation checks
+### Creating Your Project
 
-## Configuration Files
-
-### vite.config.js
-```javascript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 3000
-  }
-})
-```
-
-### tailwind.config.js
-```javascript
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
-
-### package.json Scripts
-```json
-{
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  }
-}
-```
-
-### Add to index.html
-```html
-<link 
-  rel="stylesheet" 
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-/>
-```
-
-### Add to src/index.css
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-## Available Scripts
-
+1. Clone the template:
 ```bash
-# Start development server
+git clone https://github.com/sportwales/SWPT.git your-project-name
+cd your-project-name
+```
+
+2. Update project configuration:
+   - Open `package.json` and update:
+     ```json
+     {
+       "name": "your-project-name",
+       "version": "0.0.1",
+       // Keep other configurations as is
+     }
+     ```
+   - Update the title in `index.html`
+   - Remove the Git history and initialise a new repository:
+     ```bash
+     rm -rf .git
+     git init
+     ```
+
+3. Install dependencies:
+```bash
+npm install
+```
+
+4. Start development:
+```bash
 npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build locally
-npm run preview
 ```
 
+## Project Architecture
 
-## Deployment
+### Directory Structure
+```
+your-project/
+├── public/                    # Static assets
+│   ├── sport_wales_logo_white.png
+│   ├── sw_favicon.ico
+│   └── vite.svg
+├── src/
+│   ├── components/           # React components
+│   │   ├── component_library/  # Reusable UI components
+│   │   ├── main/              # Core components
+│   │   └── ui/                # Basic UI elements
+│   ├── pages/                # Page components
+│   ├── assets/               # Project assets
+│   ├── data/                 # Data files
+│   ├── styles/               # CSS styles
+│   │   ├── index.css          # Main styles
+│   │   └── custom/            # Custom styles
+│   ├── utils/                # Utility functions
+│   ├── App.jsx              # Main application
+│   └── main.jsx             # Entry point
+└── [Configuration Files]     # Various config files
+```
 
-### Deploy to Netlify:
+### Key Features
 
-1. Update netlify.toml for Vite:
+#### 1. Styling System
+The template uses a combination of Tailwind CSS and custom Sport Wales styles:
+- Sport Wales brand colors (configured in `tailwind.config.js`)
+- Custom components with consistent styling
+- Responsive design utilities
+- CSS variables for brand consistency
 
+#### 2. Component Library
+Located in `src/components/component_library/`:
+- Pre-built components following Sport Wales design guidelines
+- Form components with validation
+- Layout components
+- Interactive elements
+
+#### 3. Bilingual Support
+Built-in support for English and Welsh:
+- Route-based language switching
+- Language toggle component
+- Structured content organisation
+
+#### 4. Development Tools
+- Hot Module Replacement with Vite
+- ESLint configuration for code quality
+- PostCSS for advanced CSS features
+- Tailwind CSS for utility-first styling
+
+## Customisation Guide
+
+### Adding New Features
+
+1. Page Components:
+```jsx
+// src/pages/YourNewPage.jsx
+import React from 'react';
+import { Layout } from '../components/Layout';
+
+export function YourNewPage() {
+  return (
+    <Layout>
+      <div className="sw-container">
+        {/* Your content here */}
+      </div>
+    </Layout>
+  );
+}
+```
+
+2. Add the route in `App.jsx`:
+```jsx
+<Route path="/your-path" element={<YourNewPage />} />
+```
+
+## Understanding the Style System
+
+### Base Styling Architecture
+
+Our styling system combines Tailwind CSS with Sport Wales' custom design system. Think of it as a layered approach:
+
+1. **Tailwind Base Layer**: The foundation
+2. **Sport Wales Custom Variables**: Our brand-specific values
+3. **Component-Specific Styles**: Pre-built, consistent components
+4. **Utility Classes**: Quick style modifications
+
+### How Our Style System Works
+
+#### CSS Variables and Brand Colors
+
+In `src/styles/index.css`, we define our brand-specific CSS variables:
+
+```css
+:root {
+  /* Primary Brand Colors */
+  --color-sw-red: #E32434;
+  --color-sw-yellow: #F6B207;
+  --color-sw-blue: #164B64;
+  --color-sw-green: #299D91;
+
+  /* Typography */
+  --font-primary: 'Objektiv MK1', 'Montserrat', Arial, sans-serif;
+  --font-size-body: 16px;
+  --line-height-normal: 110%;
+}
+```
+
+These variables are then integrated with Tailwind in `tailwind.config.js`:
+
+```javascript
+export default {
+  theme: {
+    extend: {
+      colors: {
+        'sw-red': '#E32434',
+        'sw-blue': '#164B64',
+        // other colors...
+      },
+      fontSize: {
+        'body': '20px',
+        'hero': '95px',
+      }
+    }
+  }
+}
+```
+
+#### Using the Style System
+
+1. **Basic Component Styling**:
+```jsx
+// Using Sport Wales utility classes
+<button className="sw-button-primary">
+  Click Me
+</button>
+
+// Same button with additional Tailwind utilities
+<button className="sw-button-primary mt-4 hover:opacity-80">
+  Click Me
+</button>
+```
+
+2. **Layout Components**:
+```jsx
+// Sport Wales container with Tailwind spacing
+<div className="sw-container py-8">
+  <div className="sw-card">
+    Content here
+  </div>
+</div>
+```
+
+3. **Text Styling**:
+```jsx
+// Combining Sport Wales and Tailwind classes
+<h1 className="sw-heading-primary text-sw-blue mb-6">
+  Main Heading
+</h1>
+```
+
+#### Custom Components and Overrides
+
+Our `@layer components` defines Sport Wales-specific components:
+
+```css
+@layer components {
+  .sw-button {
+    height: var(--button-height);
+    padding: var(--button-padding);
+    border-radius: var(--border-radius-button);
+    @apply font-semibold transition-all duration-300;
+  }
+
+  .sw-card {
+    @apply rounded-lg bg-white p-6 shadow-md;
+  }
+}
+```
+
+#### Responsive Design
+
+Our components are mobile-first and use Tailwind's responsive prefixes:
+
+```jsx
+<div className="sw-container">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {/* Content */}
+  </div>
+</div>
+```
+
+#### Form Components
+
+Form elements use our custom styles with Tailwind utility classes:
+
+```jsx
+<form className="space-y-6">
+  <div>
+    <label className="sw-label">Input Label</label>
+    <input 
+      className="sw-input w-full focus:ring-sw-blue" 
+      type="text"
+    />
+  </div>
+</form>
+```
+
+### Common Style Patterns
+
+Here are some frequently used style combinations:
+
+1. **Card Layouts**:
+```jsx
+<div className="sw-card hover:shadow-lg transition-shadow">
+  <h3 className="sw-heading-secondary">Card Title</h3>
+  <p className="text-gray-600">Card content</p>
+</div>
+```
+
+2. **Button Variations**:
+```jsx
+// Primary button
+<button className="sw-button-primary">Primary Action</button>
+
+// Secondary button with icon
+<button className="sw-button-secondary inline-flex items-center">
+  <span>Secondary Action</span>
+  <ArrowRight className="ml-2 h-4 w-4" />
+</button>
+```
+
+3. **Status Indicators**:
+```jsx
+<div className="sw-notice">
+  <p className="text-sw-blue font-medium">Important Notice</p>
+</div>
+```
+
+### Styling Guidelines
+
+
+
+1. Using Sport Wales classes:
+```jsx
+// Preferred approach using our utility classes
+<button className="sw-button sw-button-primary">
+  Click Me
+</button>
+
+// Custom styling when needed
+<div className="sw-card custom-class">
+  Content
+</div>
+```
+
+2. Adding custom styles:
+```css
+/* src/styles/custom/styles.css */
+.custom-class {
+  /* Your styles here */
+}
+```
+
+## Deployment Options
+
+### Netlify Deployment
+
+1. Configure `netlify.toml`:
 ```toml
 [build]
   command = "npm run build"
-  publish = "dist"    # Vite uses 'dist' instead of 'build'
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
@@ -205,30 +359,115 @@ npm run preview
   status = 200
 ```
 
-2. Deploy options:
-   - Connect your GitHub repository to Netlify for automatic deployments
-   - Or use Netlify CLI:
-```bash
-npm install -g netlify-cli
-netlify deploy
+2. Deploy:
+   - Connect your GitHub repository to Netlify, or
+   - Use Netlify CLI:
+     ```bash
+     npm install -g netlify-cli
+     netlify deploy
+     ```
+
+### Railway Deployment
+
+1. Configure `railway.toml`:
+```toml
+[build]
+builder = "nixpacks"
+buildCommand = "npm run build"
+
+[deploy]
+startCommand = "npm start"
+healthcheckPath = "/"
 ```
 
-## Features
-- Vite for faster development and builds
-- React Router for navigation
-- Tailwind CSS for styling
-- Font Awesome icons
-- HeadlessUI components
-- Production-ready configuration
-- Netlify deployment setup
+2. Use Railway's GitHub integration or CLI for deployment.
 
-## License
-This project is licensed under the MIT License.
+### Docker Deployment
 
-## Support
-For support, email [your-email] or raise an issue in the repository.
+The template includes a production-ready Dockerfile:
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+COPY . .
+RUN npm ci
+RUN npm run build
+EXPOSE $PORT
+CMD ["npm", "start"]
+```
+
+Build and run:
+```bash
+docker build -t your-project-name .
+docker run -p 3000:3000 your-project-name
+```
+
+## Development Workflow
+
+1. Start development:
+```bash
+npm run dev
+```
+
+2. Build for production:
+```bash
+npm run build
+```
+
+3. Preview production build:
+```bash
+npm run preview
+```
+
+## Environment Variables
+
+Create a `.env` file for environment variables:
+```env
+VITE_API_URL=your-api-url
+VITE_OTHER_VAR=other-value
+```
+
+Remember: All variables must be prefixed with `VITE_`
+
+## Best Practices
+
+1. Component Organization:
+   - Place reusable components in `component_library`
+   - Keep page-specific components in `pages`
+   - Use the Layout component for consistent page structure
+
+2. State Management:
+   - Use React hooks for local state
+   - Consider context for shared state
+   - Keep state as close to where it's used as possible
+
+3. Styling:
+   - Use Sport Wales utility classes when available
+   - Follow the component styling guidelines
+   - Maintain responsive design principles
+
+4. Performance:
+   - Lazy load routes and heavy components
+   - Optimize images and assets
+   - Use appropriate caching strategies
+
+## Support and Resources
+
+- **Documentation**: Full Sport Wales design system documentation is available in the main repository
+- **Support**: Contact the Sport Wales development team at [team-email]
+- **Issues**: Raise issues in the GitHub repository
+- **Updates**: Check the changelog for template updates
+
+## License and Attribution
+
+This project template is proprietary to Sport Wales. All rights reserved.
 
 ## Important Notes
-- Vite uses `dist` instead of `build` for production builds
-- Use `npm run dev` for development (not `npm start`)
-- Environment variables in Vite must be prefixed with `VITE_`
+
+- Always prefix environment variables with `VITE_`
+- Use `npm run dev` for development
+- The production build is in the `dist` directory
+- Keep the Sport Wales design system documentation handy
+- Follow the established coding standards and patterns
+
+Need help? Contact the development team or raise an issue in the repository.
