@@ -5,7 +5,7 @@
 This document serves as a living record of all modifications and enhancements made to this Sport Wales Project. It is designed to track changes chronologically and provide clear documentation of the project's evolution. Please use this file to fully understand where the project it currently and always build on from the last updates for this file. 
 
 
-**How to update:**  first must delete the node_moudle then in the terminal enter " tree /F > structure.txt" this will create the current project structure
+**How to update File Structure:**  First must delete the node_moudle then in the terminal enter " tree /F > structure.txt" this will create the current project structure
 
 ```bash
  tree /F > structure.txt
